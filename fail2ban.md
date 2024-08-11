@@ -35,7 +35,7 @@ The Fail2Ban configuration is distributed across multiple files. The main config
 
 Fail2Ban is designed to enhance security by banning IP addresses that exhibit malicious behavior. Configuration options include:
 
-### [DEFAULT] Settings *`/ect/fail2ban/jail.locak`* :
+### [DEFAULT] Settings *`/ect/fail2ban/jail.local`* :
 
 - **bantime**: Duration for which an IP is banned (default: 10m).
 - **findtime**: Time window for tracking failed attempts (default: 10m).
