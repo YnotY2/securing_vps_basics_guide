@@ -87,7 +87,56 @@ sudo cp ./fail2ban.conf ./fail2ban.local
     - Make necessary changes in `jail.local`.
     - Customize settings for jails and actions based on your requirements.
 
-2. **Restart Fail2Ban Service**
+
+To customize Fail2Ban’s behavior, you may need to modify the `jail.local` configuration file. This file overrides the default settings specified in `jail.conf` and is used to tailor Fail2Ban's functionality to your specific needs.
+
+### Configuration Entries
+
+1. **bantime**: Sets the duration for which an IP address is banned. Default is `10m` (10 minutes).
+
+2. **findtime**: Defines the time window during which failed attempts are counted. Default is `10m` (10 minutes).
+
+3. **maxretry**: Specifies the number of allowed failed attempts before an IP is banned. Default is `5`.
+
+4. **maxmatches**: Uses the same value as `maxretry` to determine the threshold for banning.
+
+5. **backend**: Determines the method for monitoring log file changes. Default is `auto`.
+
+6. **logencoding**: Sets the encoding for log files. Default is `auto`.
+
+7. **protocol**: Defines the protocol used for monitoring. Default is `tcp`.
+
+8. **enabled**: Activates or deactivates the jail. Set to `true` to enable.
+
+9. **ignoreip**: Specifies IP addresses that should be ignored by Fail2Ban. Default is `127.0.0.1` (localhost).
+
+10. **port**: Defines the port to monitor. For SSH, use `ssh`.
+
+11. **mode**: Specifies the mode for the jail. Default is `normal`.
+
+12. **logpath**: Defines the path to the SSH log file. Use the variable `%(sshd_log)s` to reference the log file path.
+
+### Example `jail.local` Configuration
+
+Below is an example of how these settings should be added to your `jail.local` file:
+
+```ini
+[sshd]
+bantime  = 10m
+findtime  = 10m
+maxretry = 5
+maxmatches = %(maxretry)s
+backend = auto
+logencoding = auto
+protocol = tcp
+enabled = true
+ignoreip = 127.0.0.1
+port    = ssh
+mode   = normal
+logpath = %(sshd_log)s
+
+   
+4. **Restart Fail2Ban Service**
     After making changes, restart Fail2Ban to apply them:
 
     @```shell
@@ -109,9 +158,14 @@ sudo cp ./fail2ban.conf ./fail2ban.local
 
 # 
 
+# Checking the Logs `/var/log/fail2ban.log`
+
+Fail2Ban logs critical information about its operations and detected threats in the log file located at `/var/log/fail2ban.log`. This file is essential for monitoring Fail2Ban’s performance and troubleshooting issues.
+
+## Accessing the Log File
+Utilise cat or nano to view the file, very usefull for viewing if a test-ban has indeed been rejected. Or viewing live bans from server access via ssh. 
+
 ## Important Notes
 
 - **Do Not Modify Default Files**: `fail2ban.conf` and `jail.conf` should not be modified directly. Instead, use `fail2ban.local` and `jail.local` for customizations.
 - **Review Documentation**: Refer to the Fail2Ban man pages for detailed configuration options and advanced features.
-
-For further assistance, consult the Fail2Ban official documentation or seek help from the community forums.
