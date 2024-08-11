@@ -13,9 +13,9 @@ This guide provides step-by-step instructions on how to disable SSH root login o
 
    Use SSH to log in to your VPS with a user account that has sudo privileges:
 
-   @```bash
-   ssh root@your_vps_ip
-   @```
+   ```bash
+   ssh rootyour_vps_ip
+   ```
 
    Replace `your_username` with your current non-root username and `your_vps_ip` with your VPS’s IP address.
 
@@ -23,9 +23,9 @@ This guide provides step-by-step instructions on how to disable SSH root login o
 
    Open the SSH configuration file using a text editor. Here we use `nano`:
 
-   @```bash
+   ```bash
    sudo nano /etc/ssh/sshd_config
-   @```
+   ```
 
    Alternatively, you can use `vi` or another text editor if preferred.
 
@@ -35,9 +35,9 @@ This guide provides step-by-step instructions on how to disable SSH root login o
 
    Change or add the following line to disable root login:
 
-   @```bash
+   ```bash
    PermitRootLogin no
-   @```
+   ```
 
    If the line is commented out (i.e., starts with `#`), remove the `#` to uncomment it.
 
@@ -50,22 +50,22 @@ This guide provides step-by-step instructions on how to disable SSH root login o
 
    For the changes to take effect, restart the SSH service:
 
-   @```bash
+   ```bash
    sudo systemctl restart sshd
-   @```
+   ```
 
    Or, if using `service`:
 
-   @```bash
+   ```bash
    sudo service ssh restart
-   @```
+   ```
 
 6. **Verify the Change**
 
    Open a new terminal session and attempt to log in as root to ensure that root login is disabled:
 
    ```bash
-   ssh root@your_vps_ip
+   ssh rootyour_vps_ip
    ```
    You should receive a message indicating that root login is prohibited.
 
@@ -74,7 +74,7 @@ This guide provides step-by-step instructions on how to disable SSH root login o
 
   Confirm you can log in with created user creds:
   ```bash
- ssh new_user@your_vps_ip
+ ssh new_useryour_vps_ip
  ```
 
 
