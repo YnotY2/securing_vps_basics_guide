@@ -77,7 +77,7 @@ Jails define the specific services and patterns that Fail2Ban monitors. Some exa
     - enabled: true
     - port: ssh
     - logpath: Path to SSH log file.
-    - backend: systemd
+    - backend: auto
 
 - **[apache-auth]**: Monitors Apache authentication attempts.
     - port: http, https
