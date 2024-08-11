@@ -20,7 +20,7 @@ Users need to be added to the sudo group to gain sudo privileges:
 
 ```bash
 sudo usermod -aG sudo newusername
-
+```
 ## Verification
 
 To verify that the new user has sudo access, switch to the new user account:
