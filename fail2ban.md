@@ -70,7 +70,7 @@ Actions define what happens when an IP is banned. Default actions include:
 
 ## Steps to Modify Configuration
 
-# Copy `` and `` file content into new files
+1. **Copy `` and `` file content into new files**
 
 1. Navigate to the *`/ect/fail2ban/`* directory
 
@@ -83,7 +83,7 @@ sudo cp ./jail.conf ./jail.local
 sudo cp ./fail2ban.conf ./fail2ban.local
 ```
 
-1. **Edit Configuration Files**
+2. **Edit Configuration Files**
     - Make necessary changes in `jail.local`.
     - Customize settings for jails and actions based on your requirements.
 
