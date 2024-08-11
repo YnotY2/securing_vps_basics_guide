@@ -84,11 +84,10 @@ sudo cp ./fail2ban.conf ./fail2ban.local
 ```
 
 1. **Edit Configuration Files**
-    - Make necessary changes in `jail.local` or create new configuration files in `jail.d/` directory.
+    - Make necessary changes in `jail.local`.
     - Customize settings for jails and actions based on your requirements.
 
 2. **Restart Fail2Ban Service**
-
     After making changes, restart Fail2Ban to apply them:
 
     @```shell
@@ -96,7 +95,6 @@ sudo cp ./fail2ban.conf ./fail2ban.local
     @```
 
 3. **Check Status**
-
     Verify the status of Fail2Ban and specific jails:
 
     @```shell
@@ -108,6 +106,8 @@ sudo cp ./fail2ban.conf ./fail2ban.local
     @```shell
     fail2ban-client status sshd
     @```
+
+# 
 
 ## Important Notes
 
