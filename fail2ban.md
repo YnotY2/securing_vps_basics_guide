@@ -134,7 +134,7 @@ ignoreip = 127.0.0.1
 port    = ssh
 mode   = normal
 logpath = %(sshd_log)s
-
+```
    
 4. **Restart Fail2Ban Service**
     After making changes, restart Fail2Ban to apply them:
