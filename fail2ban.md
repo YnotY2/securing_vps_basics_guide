@@ -2,6 +2,32 @@
 
 This README.md file provides an overview of Fail2Ban configuration and its current status. Fail2Ban is a service that scans log files for security threats and bans IP addresses based on predefined rules. This document summarizes the status and configuration of Fail2Ban, including specific jails, configuration files, and actions.
 
+
+## Table of Contents
+
+1. [Install Fail2Ban](#install-fail2ban)
+2. [Current Status](#current-status)
+3. [Configuration Files](#configuration-files)
+4. [Configuration Overview](#configuration-overview)
+    - [DEFAULT Settings](#default-settings)
+    - [Jails Configuration](#jails-configuration)
+    - [Actions](#actions)
+5. [Steps to Modify Configuration](#steps-to-modify-configuration)
+    - [Copy and Create Files](#copy-and-create-files)
+    - [Edit Configuration Files](#edit-configuration-files)
+    - [Restart Fail2Ban Service](#restart-fail2ban-service)
+    - [Check Status](#check-status)
+6. [Checking the Logs](#checking-the-logs)
+7. [Important Notes](#important-notes)
+# Install fail2ban
+
+```
+apt-get install fail2ban
+```
+```
+systemctl status fail2ban
+```
+
 ## Current Status
 
 Fail2Ban Client Status for sshd
