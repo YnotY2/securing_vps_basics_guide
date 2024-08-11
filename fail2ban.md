@@ -32,9 +32,9 @@ systemctl status fail2ban
 
 Fail2Ban Client Status for sshd
 
-@```shell
+```shell
 fail2ban-client status sshd
-@```
+```
 
 Status for the jail: sshd
 
@@ -165,22 +165,22 @@ logpath = %(sshd_log)s
 4. **Restart Fail2Ban Service**
     After making changes, restart Fail2Ban to apply them:
 
-    @```shell
+    ```shell
     sudo systemctl restart fail2ban
-    @```
+    ```
 
 3. **Check Status**
     Verify the status of Fail2Ban and specific jails:
 
-    @```shell
+    ```shell
     fail2ban-client status
-    @```
+    ```
 
     Check the status of a specific jail:
 
-    @```shell
+    ```shell
     fail2ban-client status sshd
-    @```
+    ```
 
 # 
 
