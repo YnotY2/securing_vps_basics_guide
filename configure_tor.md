@@ -4,7 +4,7 @@ Traffic is from locahost is routed trough a socks5 proxy.
 
 TOR routes traffic from localhost to maintain privacy, control, and flexibility. This setup ensures that traffic is anonymized before it reaches the internet, prevents exposure of the public IP address, and allows for selective routing of traffic through TOR. It is a well-established practice in TOR’s design and usage to balance security and practicality.
 
-- If you want to route all outbound traffic over tor checkout 'global_tor_routing.md'*
+- *If you want to route all outbound traffic over tor checkout 'global_tor_routing.md'*
 
 ## Table of Contents
 
