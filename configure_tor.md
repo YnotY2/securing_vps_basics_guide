@@ -2,6 +2,8 @@
 This is a quick guide to setting up TOR on a VPS, no complex routing rules with nftables. Just simply setting up basic tor usage, routing utilising torify. Monitoring TOR interface, traffic and settings using 'nyx' aswell.
 Traffic is from locahost is routed trough a socks5 proxy. 
 
+TOR routes traffic from localhost to maintain privacy, control, and flexibility. This setup ensures that traffic is anonymized before it reaches the internet, prevents exposure of the public IP address, and allows for selective routing of traffic through TOR. It is a well-established practice in TOR’s design and usage to balance security and practicality.
+
 ## Table of Contents
 
 1. [Installation of Requirements](#installation-of-requirements)
