@@ -141,10 +141,43 @@ table ip filter {
 ```
 
 
-## Unique Values
+# Unique Values
 Within the firewall configurations there are a few unique requirements necessary for the firewall to work outside of
-just having TOR running with all the listening PORT working. A internal I.P on a internal interface is needed. This kinda
-acts like a bridge to foward traffic over internally.
+just having TOR running with all the listening PORT working.
+
+## Interfaces Needed
+After having successfully set-up a internal i.p address you should have atleast 3 iterfaces up
+
+```
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 92.113.25.94  netmask 255.255.255.0  broadcast 92.113.25.255
+        inet6 fe80::be24:11ff:fe5f:94cf  prefixlen 64  scopeid 0x20<link>
+        inet6 2a02:4780:28:adb3::1  prefixlen 48  scopeid 0x0<global>
+        ether bc:24:11:5f:94:cf  txqueuelen 1000  (Ethernet)
+        RX packets 14349135  bytes 1572472373 (1.4 GiB)
+        RX errors 0  dropped 1647  overruns 0  frame 0
+        TX packets 119322  bytes 35839211 (34.1 MiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+eth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.1.10  netmask 255.255.255.0  broadcast 0.0.0.0
+        inet6 fe80::d417:81ff:fed4:5c64  prefixlen 64  scopeid 0x20<link>
+        ether d6:17:81:d4:5c:64  txqueuelen 1000  (Ethernet)
+        RX packets 174643  bytes 7340004 (6.9 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 40  bytes 2572 (2.5 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 37161  bytes 18862281 (17.9 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 37161  bytes 18862281 (17.9 MiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+```
 
 1. Internal I.P on fresh interface
 # Virtual Network Interface Setup
@@ -155,9 +188,22 @@ This guide provides instructions for creating a virtual network interface on bot
 
 On many modern Linux distributions, interfaces are typically managed by the system’s network manager or by configuration files. However, if you need to manually create a new virtual interface, you can use the following approach. This is usually more about configuring a virtual interface rather than creating one from scratch, as the creation of interfaces might depend on the VPS provider's setup.
 
-### Using Network Configuration Tools
+In this setup, the internal IP on an internal interface acts as a bridge or gateway to manage traffic between different network segments. This internal interface can handle traffic between the local system and the Tor network, effectively isolating internal and external traffic flows.
 
-#### For Debian/Ubuntu-based Systems:
+`interface`
+```
+eth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.1.10  netmask 255.255.255.0  broadcast 0.0.0.0
+        inet6 fe80::d417:81ff:fed4:5c64  prefixlen 64  scopeid 0x20<link>
+        ether d6:17:81:d4:5c:64  txqueuelen 1000  (Ethernet)
+        RX packets 174643  bytes 7340004 (6.9 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 40  bytes 2572 (2.5 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+```
+(we can actually set the ip addres, pretty cool)
+
 
 **Using `ip` command:**
 
@@ -200,13 +246,10 @@ To verify that the interface is functioning correctly, you can ping the IP addre
 ping 192.168.1.10
 ```
 
+Now to also cinfirm it's internal attempt to ping it from outside of VPS ssh connection
 
 
-In this setup, the internal IP on an internal interface acts as a bridge or gateway to manage traffic between different network segments. This internal interface can handle traffic between the local system and the Tor network, effectively isolating internal and external traffic flows.
-
-
-
-
+## Why? 
 
 
 
