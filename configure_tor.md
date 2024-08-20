@@ -18,21 +18,6 @@ This is a quick guide to setting up TOR on a VPS, no complex routing rules with 
     - [4. Verify Nyx Functionality](#verify-nyx-functionality)
 
 
-2. [Confirm TOR Default Settings](#confirm-tor-default-settings)
-3. [Configuration Files](#configuration-files)
-4. [Configuration Overview](#configuration-overview)
-    - [DEFAULT Settings](#default-settings)
-    - [Jails Configuration](#jails-configuration)
-    - [Actions](#actions)
-5. [Steps to Modify Configuration](#steps-to-modify-configuration)
-    - [Copy and Create Files](#copy-and-create-files)
-    - [Edit Configuration Files](#edit-configuration-files)
-    - [Restart Fail2Ban Service](#restart-fail2ban-service)
-    - [Check Status](#check-status)
-6. [Checking the Logs](#checking-the-logs)
-7. [Important Notes](#important-notes)
-
-
 # Installation of Requirements
 
 This document outlines the steps to install the necessary software packages via the command line interface (CLI).
@@ -144,6 +129,3 @@ To set up the `nyx` monitoring interface for TOR, follow these steps:
    When prompted, enter the password you configured. If everything is set up correctly, `nyx` will connect to the TOR controller and display the monitoring interface.
 
 By following these steps, you will enable and configure the `nyx` monitoring interface to work with your TOR setup.
-
-- **Do Not Modify Default Files**: `fail2ban.conf` and `jail.conf` should not be modified directly. Instead, use `fail2ban.local` and `jail.local` for customizations.
-- **Review Documentation**: Refer to the Fail2Ban man pages for detailed configuration options and advanced features.
