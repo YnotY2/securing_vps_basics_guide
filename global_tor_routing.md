@@ -18,7 +18,7 @@ TOR routes traffic from localhost to maintain privacy, control, and flexibility.
 4. [nftables](#nftables)
     - [Configuration File](#configuration-file-global_tor_routing.nft)
     - [Configuring System Interface](#configuring-system-interface)
-    - [Unique Values](#unique-values)
+    - [Setting Up Unique Values](#setting-up-unique-values)
     
 # Assumptions Set-Up
 This guide assumes you have followed 'configure_tor.md', and confirmed TOR connection works.
@@ -141,7 +141,7 @@ table ip filter {
 ```
 
 
-# Unique Values
+# Setting Up Unique Values
 Within the firewall configurations there are a few unique requirements necessary for the firewall to work outside of
 just having TOR running with all the listening PORT working.
 
@@ -249,8 +249,7 @@ ping 192.168.1.10
 Now to also cinfirm it's internal attempt to ping it from outside of VPS ssh connection
 
 
-### Overview
-
+## Overview
 Your `nftables` firewall configuration handles traffic as follows for the IP address `192.168.1.10`:
 
 
@@ -258,24 +257,31 @@ Your `nftables` firewall configuration handles traffic as follows for the IP add
 - **Allowed** under the `INPUT` and `OUTPUT` chains if it complies with the specified rules.
 
   **Rules:**
-  - **`INPUT` Chain:** Traffic is accepted if it is part of an established connection or if it originates from the `private` IP range, which includes `192.168.1.10`. This means traffic from `192.168.1.10` is permitted if it matches these criteria.
-  - **`OUTPUT` Chain:** Traffic destined for `192.168.1.10` is allowed because it falls within the `private` IP range.
+  - **`INPUT` Chain:**
+    - Traffic from `192.168.1.10` is allowed if it is part of an established connection or if it originates from the `private` IP range. `192.168.1.10` falls within the `private` range (`192.168.0.0/16`), so it will be accepted if it meets these criteria.
+  - **`OUTPUT` Chain:**
+    - Traffic destined for `192.168.1.10` is allowed because it is within the `private` IP range. This includes both established connections and new connections if they are not explicitly blocked.
 
   **Non-compliance:**
-  - Traffic not matching the established connection state or not from the `private` range will be dropped based on the default policy or other rules not shown.
+  - Traffic from `192.168.1.10` that does not match the established connection state or the `private` IP range rules may be dropped.
 
 ### NAT Rules
-- **Traffic from `192.168.1.10`** is not specifically modified or redirected by NAT rules. It follows the general acceptance or redirection rules defined.
+- **Traffic to/from `192.168.1.10`** is subject to NAT rules.
 
   **Rules:**
-  - **`OUTPUT` Chain (NAT Table):** Traffic to/from `192.168.1.10` does not trigger any specific NAT actions. The NAT rules are set to redirect certain traffic (e.g., TCP traffic to `10.192.0.0/10` to port `9040`) but do not target `192.168.1.10`.
+  - **`OUTPUT` Chain (NAT Table):**
+    - **TCP Traffic:** Traffic destined for IP ranges within `10.192.0.0/10` is redirected to port `9040`. While `192.168.1.10` is not within `10.192.0.0/10`, general TCP traffic from `192.168.1.10` will also be redirected to port `9040` by the default rule.
+    - **UDP Traffic:** Traffic destined for `127.0.0.1` on UDP port `53` is redirected to port `5353`. Since `192.168.1.10` does not match this rule directly, it is not affected by this specific redirection.
 
   **Non-compliance:**
-  - If `192.168.1.10` needed specific NAT handling, it would not be addressed by current rules, which means it may not be redirected or modified beyond default behaviors.
+  - Traffic that does not meet the specific NAT redirection rules will be handled by default acceptance or rejection policies.
 
 ### Summary
-- **Incoming and Outgoing Traffic:** Allowed if it matches the rules in the `INPUT` and `OUTPUT` chains.
-- **NAT:** No special handling for `192.168.1.10`; traffic adheres to broader rules.
+- **Incoming and Outgoing Traffic:** Allowed if it matches the rules in the `INPUT` and `OUTPUT` chains. Specifically, traffic from and to `192.168.1.10` is permitted as it falls within the `private` IP range.
+- **NAT:** Traffic to/from `192.168.1.10` will follow the general NAT redirection rules, including the default TCP redirection to port `9040`.
+
+
+
 
 
 
