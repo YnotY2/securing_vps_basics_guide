@@ -17,7 +17,6 @@ TOR routes traffic from localhost to maintain privacy, control, and flexibility.
 3. [Modifying TOR confiration file](#modifying-tor-configuration-file)
 4. [nftables](#nftables)
     - [Configuration File](#configuration-file-global_tor_routing.nft)
-    - [Configuring System Interface](#configuring-system-interface)
     - [Setting Up Unique Values](#setting-up-unique-values)
     
 # Assumptions Set-Up
