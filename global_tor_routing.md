@@ -16,7 +16,7 @@ TOR routes traffic from localhost to maintain privacy, control, and flexibility.
     - [2. Test TOR Connection](#test-tor-connection)
 3. [Modifying TOR confiration file](#modifying-tor-configuration-file)
 4. [nftables](#nftables)
-    - [Configuration File](#configuration-file-'global_tor_routing.nft`)
+    - [Configuration File](#configuration-file-global_tor_routing.nft)
     - [Configuring System Interface](#configuring-system-interface)
     - [Unique Values](#unique-values)
     
