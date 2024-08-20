@@ -249,7 +249,34 @@ ping 192.168.1.10
 Now to also cinfirm it's internal attempt to ping it from outside of VPS ssh connection
 
 
-## Why? 
+### Overview
+
+Your `nftables` firewall configuration handles traffic as follows for the IP address `192.168.1.10`:
+
+
+### Traffic to/from `192.168.1.10`
+- **Allowed** under the `INPUT` and `OUTPUT` chains if it complies with the specified rules.
+
+  **Rules:**
+  - **`INPUT` Chain:** Traffic is accepted if it is part of an established connection or if it originates from the `private` IP range, which includes `192.168.1.10`. This means traffic from `192.168.1.10` is permitted if it matches these criteria.
+  - **`OUTPUT` Chain:** Traffic destined for `192.168.1.10` is allowed because it falls within the `private` IP range.
+
+  **Non-compliance:**
+  - Traffic not matching the established connection state or not from the `private` range will be dropped based on the default policy or other rules not shown.
+
+### NAT Rules
+- **Traffic from `192.168.1.10`** is not specifically modified or redirected by NAT rules. It follows the general acceptance or redirection rules defined.
+
+  **Rules:**
+  - **`OUTPUT` Chain (NAT Table):** Traffic to/from `192.168.1.10` does not trigger any specific NAT actions. The NAT rules are set to redirect certain traffic (e.g., TCP traffic to `10.192.0.0/10` to port `9040`) but do not target `192.168.1.10`.
+
+  **Non-compliance:**
+  - If `192.168.1.10` needed specific NAT handling, it would not be addressed by current rules, which means it may not be redirected or modified beyond default behaviors.
+
+### Summary
+- **Incoming and Outgoing Traffic:** Allowed if it matches the rules in the `INPUT` and `OUTPUT` chains.
+- **NAT:** No special handling for `192.168.1.10`; traffic adheres to broader rules.
+
 
 
 
