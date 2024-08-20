@@ -107,7 +107,7 @@ table ip nat {
                 meta l4proto udp ip daddr 127.0.0.1 udp dport 53 redirect to :5353
                 skuid $uid return
                 oifname "lo" return
-                ip daddr @unrouteables return
+                ip daddr unrouteables return
                 meta l4proto tcp redirect to :9040
         }
 }
@@ -123,7 +123,7 @@ table ip filter {
                 iifname $interface meta l4proto tcp tcp dport 22 ct state new accept
                 ct state established accept
                 iifname "lo" accept
-                ip saddr @private accept
+                ip saddr private accept
         }
 
         chain FORWARD {
@@ -135,10 +135,74 @@ table ip filter {
                 ct state established accept
                 oifname $interface meta l4proto tcp skuid $uid ct state new accept
                 oifname "lo" accept
-                ip daddr @private accept
+                ip daddr private accept
         }
 }
 ```
+
+
+## Unique Values
+Within the firewall configurations there are a few unique requirements necessary for the firewall to work outside of
+just having TOR running with all the listening PORT working. A internal I.P on a internal interface is needed. This kinda
+acts like a bridge to foward traffic over internally.
+
+1. Internal I.P on fresh interface
+# Virtual Network Interface Setup
+
+This guide provides instructions for creating a virtual network interface on both Debian/Ubuntu-based and Red Hat/CentOS-based systems. 
+
+## 1. Create a Virtual Network Interface
+
+On many modern Linux distributions, interfaces are typically managed by the system’s network manager or by configuration files. However, if you need to manually create a new virtual interface, you can use the following approach. This is usually more about configuring a virtual interface rather than creating one from scratch, as the creation of interfaces might depend on the VPS provider's setup.
+
+### Using Network Configuration Tools
+
+#### For Debian/Ubuntu-based Systems:
+
+**Using `ip` command:**
+
+If you’re creating a virtual interface (e.g., `eth1`), you can use the `ip` command to configure it.
+
+```bash
+sudo ip link add link eth0 name eth1 type macvlan mode bridge
+```
+
+Here’s what this does:
+- `link eth0`: Specifies that `eth0` is the parent interface.
+- `name eth1`: Creates a new virtual interface named `eth1`.
+- `type macvlan mode bridge`: Configures it as a MACVLAN in bridge mode.
+
+**Bring Up the Interface:**
+
+```bash
+sudo ip link set eth1 up
+```
+
+## 2. Assign an IP Address to the New Interface
+
+Once you have the interface (e.g., `eth1`) set up, you can assign an IP address to it.
+
+```bash
+sudo ip addr add 192.168.1.10/24 dev eth1
+```
+
+**Bring Up the Interface:**
+
+```bash
+sudo ip link set dev eth1 up
+```
+
+## 3. Confirm the Interface is Up and Accessible
+
+To verify that the interface is functioning correctly, you can ping the IP address assigned to it.
+
+```bash
+ping 192.168.1.10
+```
+
+
+
+In this setup, the internal IP on an internal interface acts as a bridge or gateway to manage traffic between different network segments. This internal interface can handle traffic between the local system and the Tor network, effectively isolating internal and external traffic flows.
 
 
 
