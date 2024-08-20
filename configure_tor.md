@@ -4,18 +4,21 @@ This is a quick guide to setting up TOR on a VPS, no complex routing rules with 
 ## Table of Contents
 
 1. [Installation of Requirements](#installation-of-requirements)
-    - [Update System Packages](#update-system-packages)
-    - [Install TOR](#install-tor)
-    - [Install torsocks](#install-torsocks)
-    - [Install nyx](#install-nyx)
+    - [0. Update System Packages](#update-system-packages)
+    - [1. Install TOR](#install-tor)
+    - [2. Install torsocks](#install-torsocks)
+    - [3. Install nyx](#install-nyx)
 2. [Confirm TOR Default Settings](#confirm-tor-default-settings)
-    - [Check TOR Service Status](#check-tor-service-status)
-    - [Test TOR Connection](#test-tor-connection)
+    - [1. Check TOR Service Status](#check-tor-service-status)
+    - [2. Test TOR Connection](#test-tor-connection)
 3. [Enable Nyx Monitoring Interface](#enable-nyx-monitoring-interface)
-    - [Create a TOR Controller Password Hash](#create-a-tor-controller-password-hash)
-    - [Configure TOR Controller Settings](#configure-tor-controller-settings)
-    - [Restart TOR](#restart-tor)
-    - [Verify Nyx Functionality](#verify-nyx-functionality)
+    - [1. Create a TOR Controller Password Hash](#create-a-tor-controller-password-hash)
+    - [2. Configure TOR Controller Settings](#configure-tor-controller-settings)
+    - [3. Restart TOR](#restart-tor)
+    - [4. Verify Nyx Functionality](#verify-nyx-functionality)
+
+This format should match the numbered sections in your README.md and provide a clear structure for navigating the document.
+
 
 
 1. [Installation requirements](#install-of-requirements)
