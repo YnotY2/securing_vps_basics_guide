@@ -4,7 +4,7 @@ This is a quick guide to setting up TOR on a VPS, no complex routing rules with 
 ## Table of Contents
 
 1. [Installation of Requirements](#installation-of-requirements)
-    - [0. Update System Packages](#update-system-packages)
+    - [Update System Packages](#update-system-packages)
     - [1. Install TOR](#install-tor)
     - [2. Install torsocks](#install-torsocks)
     - [3. Install nyx](#install-nyx)
@@ -17,11 +17,7 @@ This is a quick guide to setting up TOR on a VPS, no complex routing rules with 
     - [3. Restart TOR](#restart-tor)
     - [4. Verify Nyx Functionality](#verify-nyx-functionality)
 
-This format should match the numbered sections in your README.md and provide a clear structure for navigating the document.
 
-
-
-1. [Installation requirements](#install-of-requirements)
 2. [Confirm TOR Default Settings](#confirm-tor-default-settings)
 3. [Configuration Files](#configuration-files)
 4. [Configuration Overview](#configuration-overview)
