@@ -15,7 +15,11 @@ TOR routes traffic from localhost to maintain privacy, control, and flexibility.
     - [1. Check TOR Service Status](#check-tor-service-status)
     - [2. Test TOR Connection](#test-tor-connection)
 3. [Modifying TOR confiration file](#modifying-tor-configuration-file)
-4. 
+4. [nftables]
+    [Configuration File]
+    [Configuring System Interface]
+    [Unique Values]
+    
 # Assumptions Set-Up
 This guide assumes you have followed 'configure_tor.md', and confirmed TOR connection works.
 
@@ -71,4 +75,75 @@ HashedControlPassword 16:16:01212Ff122122121DF3141E15EXAMPLHASHJ
    ```
 
    When prompted, enter the password you configured. If everything is set up correctly, `nyx` will connect to the TOR controller and display the monitoring interface. Here you can verify the extra rules/lines you have enabled within /etc/tor/torrc are     displayed and working. 
+
+
+
+# Nftables
+Nftables is a very powerfull modern firewall, via cli. In this specific use-case we are going to configure the managing of traffic flow in a system that uses the Tor network for anonymity, forcing all outbound traffic trough TOR network aka nodes. We enforce strict controls on which traffic is allowed in and out of the system. The firewall setup involves two tables: nat for network address translation and filter for packet filtering.
+
+
+## Coniguration File 'global_tor_routing.nft'
+```
+# Verify your network interface with ip addr
+define interface = eth0
+# Verify tor uid with id -u tor, in debain find it using htop, for me it's: debian-tor
+define uid = 105
+
+
+table ip nat {
+        set unrouteables {
+                type ipv4_addr
+                flags interval
+                elements = { 127.0.0.0/8, 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16, 0.0.0.0/8, 100.64.0.0/10, 169.254.0.0/16, 192.0.0.0/24, 192.0.2.0/24, 192.88.99.0/24, 198.18.0.0/15, 198.51.100.0/24, 203.0.113.0/24, 224.0.0.0/4, 240.0.0.0/4 }
+        }
+
+        chain POSTROUTING {
+                type nat hook postrouting priority 100; policy accept;
+        }
+
+        chain OUTPUT {
+                type nat hook output priority -100; policy accept;
+                meta l4proto tcp ip daddr 10.192.0.0/10 redirect to :9040
+                meta l4proto udp ip daddr 127.0.0.1 udp dport 53 redirect to :5353
+                skuid $uid return
+                oifname "lo" return
+                ip daddr @unrouteables return
+                meta l4proto tcp redirect to :9040
+        }
+}
+table ip filter {
+        set private {
+                type ipv4_addr
+                flags interval
+                elements = { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16, 127.0.0.0/8 }
+        }
+        chain INPUT {
+                type filter hook input priority 0; policy drop;
+                # Allow Local SSH connections
+                iifname $interface meta l4proto tcp tcp dport 22 ct state new accept
+                ct state established accept
+                iifname "lo" accept
+                ip saddr @private accept
+        }
+
+        chain FORWARD {
+                type filter hook forward priority 0; policy drop;
+        }
+
+        chain OUTPUT {
+                type filter hook output priority 0; policy drop;
+                ct state established accept
+                oifname $interface meta l4proto tcp skuid $uid ct state new accept
+                oifname "lo" accept
+                ip daddr @private accept
+        }
+}
+```
+
+
+
+
+
+
+
 
