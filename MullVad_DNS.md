@@ -217,28 +217,43 @@ To verify that your custom DNS settings are working correctly, you can use sever
 Ensure that all these checks confirm that your custom DNS settings are properly configured and active. Adjust any settings if necessary and verify again.
 
 
-   
-4. **Restart Fail2Ban Service**
-    After making changes, restart Fail2Ban to apply them:
+## Fixing common problems: 
+If you need to set DNS servers specifically for a particular network interface, use the `resolvectl dns` command. This can be useful if you want to override DNS settings for individual interfaces:
 
-    ```shell
-    sudo systemctl restart fail2ban
-    ```
+1. **Set DNS servers for an interface**:
+   Replace `<interface>` with your network interface name (e.g., `eth0`) and `<dns_ip>` with the IP address of the DNS server.
 
-3. **Check Status**
-    Verify the status of Fail2Ban and specific jails:
+   ```
+   sudo resolvectl dns <interface> <dns_ip>
+   ```
 
-    ```shell
-    fail2ban-client status
-    ```
+   Example:
+   ```
+   sudo resolvectl dns eth0 194.242.2.9
+   ```
 
-    Check the status of a specific jail:
+2. **Verify DNS configuration with `resolvectl status`**:
+   ```
+   resolvectl status
+   ```
+   Ensure that the output shows the correct DNS servers and settings for the specified interface.
 
-    ```shell
-    fail2ban-client status sshd
-    ```
+### 3. Restart `systemd-resolved`
 
-# 
+1. **Check if `systemd-resolved` is running**:
+   ```
+   sudo systemctl status systemd-resolved
+   ```
+   Ensure that it is active and running. If it is not running, start it:
+   ```
+   sudo systemctl start systemd-resolved
+   ```
+
+2. **Restart `systemd-resolved` to apply changes**:
+   ```
+   sudo systemctl restart systemd-resolved
+   ```
+
 
 # Checking the Logs `/var/log/fail2ban.log`
 
