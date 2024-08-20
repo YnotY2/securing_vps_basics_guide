@@ -16,9 +16,9 @@ TOR routes traffic from localhost to maintain privacy, control, and flexibility.
     - [2. Test TOR Connection](#test-tor-connection)
 3. [Modifying TOR confiration file](#modifying-tor-configuration-file)
 4. [nftables]
-    [Configuration File]
-    [Configuring System Interface]
-    [Unique Values]
+    - [Configuration File]
+    - [Configuring System Interface]
+    - [Unique Values]
     
 # Assumptions Set-Up
 This guide assumes you have followed 'configure_tor.md', and confirmed TOR connection works.
