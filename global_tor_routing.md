@@ -15,11 +15,7 @@ TOR routes traffic from localhost to maintain privacy, control, and flexibility.
     - [1. Check TOR Service Status](#check-tor-service-status)
     - [2. Test TOR Connection](#test-tor-connection)
 3. [Modifying TOR confiration file](#modifying-tor-configuration-file)
-    - [1. Create a TOR Controller Password Hash](#create-a-tor-controller-password-hash)
-    - [2. Configure TOR Controller Settings](#configure-tor-controller-settings)
-    - [3. Restart TOR](#restart-tor)
-    - [4. Verify Nyx Functionality](#verify-nyx-functionality)
-
+4. 
 # Assumptions Set-Up
 This guide assumes you have followed 'configure_tor.md', and confirmed TOR connection works.
 
@@ -74,6 +70,5 @@ HashedControlPassword 16:16:01212Ff122122121DF3141E15EXAMPLHASHJ
    sudo systemctl restart tor
    ```
 
-   When prompted, enter the password you configured. If everything is set up correctly, `nyx` will connect to the TOR controller and display the monitoring interface.
+   When prompted, enter the password you configured. If everything is set up correctly, `nyx` will connect to the TOR controller and display the monitoring interface. Here you can verify the extra rules/lines you have enabled within /etc/tor/torrc are     displayed and working. 
 
-By following these steps, you will enable and configure the `nyx` monitoring interface to work with your TOR setup.
