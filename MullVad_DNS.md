@@ -6,7 +6,7 @@ no log policy on there DNS servers.
 ## Features DNS Content Blockers
 ```
 Hostname 	            Ads 	Trackers 	Malware 	Adult 	Gambling 	Social media
-all.dns.mullvad.net 	✅ 	    ✅ 	        ✅ 	        ✅ 	    ✅ 	        ✅
+all.dns.mullvad.net 	✅ ✅ ✅ ✅ ✅ ✅
 ```
 
 ## Table of Contents
@@ -15,12 +15,10 @@ all.dns.mullvad.net 	✅ 	    ✅ 	        ✅ 	        ✅ 	    ✅ 	        �
 2. [Configuration Files](#configuration-files)
 3. [Configuration Overview](#configuration-overview)
 4. [Verify Custom DNS Settings](#verify-custom-dns-settings)
-6. [Checking the Logs](#checking-the-logs)
-7. [Important Notes](#important-notes)
+5. [Fixing Common Problems](#fixing-common-problems)
 
 # Confirgure MullVad DNS
-You can simply follow this pretty good guide provided by MullVad VPN: 
-- This set-up utilises systemd-resolved
+You can simply follow this pretty good guide provided by MullVad VPN: **This set-up utilises *systemd-resolved***
 
 ```
 https://mullvad.net/en/help/dns-over-https-and-dns-over-tls
@@ -254,15 +252,6 @@ If you need to set DNS servers specifically for a particular network interface, 
    sudo systemctl restart systemd-resolved
    ```
 
-
-# Checking the Logs `/var/log/fail2ban.log`
-
-Fail2Ban logs critical information about its operations and detected threats in the log file located at `/var/log/fail2ban.log`. This file is essential for monitoring Fail2Ban’s performance and troubleshooting issues.
-
-## Accessing the Log File
-Utilise cat or nano to view the file, very usefull for viewing if a test-ban has indeed been rejected. Or viewing live bans from server access via ssh. 
-
-## Important Notes
 
 - **Do Not Modify Default Files**: `fail2ban.conf` and `jail.conf` should not be modified directly. Instead, use `fail2ban.local` and `jail.local` for customizations.
 - **Review Documentation**: Refer to the Fail2Ban man pages for detailed configuration options and advanced features.
