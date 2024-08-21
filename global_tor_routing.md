@@ -42,11 +42,14 @@ This is a quick guide for forcing all outbound traffic from VPS over the tonetwo
 -   Disabled fowarding on firewall ✅
     - *Traffic is dropped by default, because we have no need for the firewall to act as a router or gateway*
     - *chain FORWARD*
--   asynchronous  ✅
--   Database ✅
--   Handles unexpected message ✅
-    -   *Displays the start_menu command to press*
-
+-   Reject all outbound traffic from unroutable ip rangeses ✅
+    - ```
+      set unrouteables {
+                type ipv4_addr
+                flags interval
+                elements = { 127.0.0.0/8, 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16, 0.0.0.0/8, 100.64.0.0/10, 169.254.0.0/16, 192.0.0.0/24, 192.0.2.0/24, 192.88.99.0/24, 198.18.0.0/15, 198.51.100.0/24, 203.0.113.0/24, 224.0.0.0/4, 240.0.0.0/4 }
+      }
+      ``
 
     
 # Assumptions Set-Up
