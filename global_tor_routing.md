@@ -15,7 +15,7 @@ This is a quick guide for forcing all outbound traffic from VPS over the tonetwo
     - [Configuration File](#configuration-file-global_tor_routing.nft)
     - [Setting Up Unique Values](#setting-up-unique-values)
 
-3. [Internal IP on Fresh Interface (Virtual Network Interface Setup)](#internal-ip-on-fresh-interface-virtual-network-interface-setup)
+3. [Internal I.P on fresh interface](Virtual Network Interface Setup)](#internal-ip-on-fresh-interface)
 
 4. [Interface Name](#interface-name)
 
@@ -206,7 +206,8 @@ lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
 
 ```
 
-# Internal I.P on fresh interface  (Virtual Network Interface Setup)
+# Internal I.P on fresh interface 
+- (Virtual Network Interface Setup)
 
 This guide provides instructions for creating a virtual network interface on both Debian/Ubuntu-based and Red Hat/CentOS-based systems. 
 The internal I.P we are creating is `192.168.1.10` falls within the `192.168.0.0/16` range. 
