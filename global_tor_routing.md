@@ -15,7 +15,7 @@ This is a quick guide for forcing all outbound traffic from VPS over the tonetwo
     - [Configuration File](#configuration-file-global_tor_routing.nft)
     - [Setting Up Unique Values](#setting-up-unique-values)
 
-3. [Internal I.P on fresh interface](Virtual Network Interface Setup)](#internal-ip-on-fresh-interface)
+3. [Internal I.P on fresh interface](#internal-ip-on-fresh-interface)
 
 4. [Interface Name](#interface-name)
 
