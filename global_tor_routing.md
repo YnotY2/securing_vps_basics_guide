@@ -20,8 +20,8 @@ TOR routes traffic from localhost to maintain privacy, control, and flexibility.
     - [Setting Up Unique Values](#setting-up-unique-values)
     
 # Assumptions Set-Up
-This guide assumes you have followed 'configure_tor.md', and confirmed TOR connection works.
-
+This guide assumes you have followed `configure_tor.md`, and confirmed TOR connection works.
+This guide assumes you have followed `MullVad_DNS.md`, and confirmed DNS works
 
 
 # Modifying TOR confiration file
