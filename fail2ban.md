@@ -2,6 +2,8 @@
 
 This README.md file provides an overview of Fail2Ban configuration and its current status. Fail2Ban is a service that scans log files for security threats and bans IP addresses based on predefined rules. This document summarizes the status and configuration of Fail2Ban, including specific jails, configuration files, and actions.
 
+![tor_routing_globa](./images/fail2ban_banner.png)
+
 
 ## Table of Contents
 
