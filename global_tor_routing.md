@@ -83,6 +83,8 @@ define interface = <parent_interface>
 # Verify tor uid with id -u tor, in debain find it using htop, for me it's: debian-tor. (will be user running tor prcess)
 define uid = <uid_of_tor_user>
 
+# Private Internal I.P Utilised: 192.168.1.10
+
 
 table ip nat {
         set unrouteables {
@@ -97,6 +99,7 @@ table ip nat {
 
         chain OUTPUT {
                 type nat hook output priority -100; policy accept;
+                # Range of '10.192.0.0/10': (10.192.0.0 - 10.255.255.255)
                 meta l4proto tcp ip daddr 10.192.0.0/10 redirect to :9040
                 meta l4proto udp ip daddr 127.0.0.1 udp dport 53 redirect to :5353
                 skuid $uid return
