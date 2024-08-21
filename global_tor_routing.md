@@ -176,6 +176,8 @@ lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
 # Internal I.P on fresh interface  (Virtual Network Interface Setup)
 
 This guide provides instructions for creating a virtual network interface on both Debian/Ubuntu-based and Red Hat/CentOS-based systems. 
+The internal I.P we are creating is `192.168.1.10` falls within the `192.168.0.0/16` range. 
+- *The range of "192.168.0.0/16"* : `192.168.0.0` to `192.168.255.255`.
 
 ## 1. Create a Virtual Network Interface
 
