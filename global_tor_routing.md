@@ -77,7 +77,7 @@ Nftables is a very powerfull modern firewall, via cli. In this specific use-case
 
 
 ## Coniguration File 'global_tor_routing.nft'
-```nftables
+```nft
 # Verify your network interface with ip addr, verify interface by curling public I.P
 define interface = eth0
 # Verify tor uid with id -u tor, in debain find it using htop, for me it's: debian-tor. (will be user running tor prcess)
