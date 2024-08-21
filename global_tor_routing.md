@@ -7,18 +7,24 @@ This is a quick guide for forcing all outbound traffic from VPS over the tonetwo
 
 
 
-0. [Assumptions Set-Up](#Aassumptions-set-up)
-2. [Confirm TOR Default Settings](#confirm-tor-default-settings)
-    - [1. Check TOR Service Status](#check-tor-service-status)
-    - [2. Test TOR Connection](#test-tor-connection)
-3. [Modifying TOR confiration file](#modifying-tor-configuration-file)
-4. [nftables](#nftables)
+0. [Assumptions Set-Up](#assumptions-set-up)
+1. [Confirm TOR Default Settings](#confirm-tor-default-settings)
+    - [Check TOR Service Status](#check-tor-service-status)
+    - [Test TOR Connection](#test-tor-connection)
+
+2. [Modifying TOR Configuration File](#modifying-tor-configuration-file)
+
+3. [nftables](#nftables)
     - [Configuration File](#configuration-file-global_tor_routing.nft)
     - [Setting Up Unique Values](#setting-up-unique-values)
-5. [Internal IP on Fresh Interface (Virtual Network Interface Setup)](#internal-ip-on-fresh-interface-virtual-network-interface-setup)
-6. [Interface Name](#interface-name)
-7. [UID for Tor Process](#uid-for-tor-process)
-8. [Firewall Explained](#firewall-explained)
+
+4. [Internal IP on Fresh Interface (Virtual Network Interface Setup)](#internal-ip-on-fresh-interface-virtual-network-interface-setup)
+
+5. [Interface Name](#interface-name)
+
+6. [UID for Tor Process](#uid-for-tor-process)
+ 
+7. [Firewall Explained](#firewall-explained)
 
 
 
