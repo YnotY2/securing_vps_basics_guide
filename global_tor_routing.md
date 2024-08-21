@@ -8,23 +8,20 @@ This is a quick guide for forcing all outbound traffic from VPS over the tonetwo
 
 
 0. [Assumptions Set-Up](#assumptions-set-up)
-1. [Confirm TOR Default Settings](#confirm-tor-default-settings)
-    - [Check TOR Service Status](#check-tor-service-status)
-    - [Test TOR Connection](#test-tor-connection)
 
-2. [Modifying TOR Configuration File](#modifying-tor-configuration-file)
+1. [Modifying TOR Configuration File](#modifying-tor-configuration-file)
 
-3. [nftables](#nftables)
+2. [nftables](#nftables)
     - [Configuration File](#configuration-file-global_tor_routing.nft)
     - [Setting Up Unique Values](#setting-up-unique-values)
 
-4. [Internal IP on Fresh Interface (Virtual Network Interface Setup)](#internal-ip-on-fresh-interface-virtual-network-interface-setup)
+3. [Internal IP on Fresh Interface (Virtual Network Interface Setup)](#internal-ip-on-fresh-interface-virtual-network-interface-setup)
 
-5. [Interface Name](#interface-name)
+4. [Interface Name](#interface-name)
 
-6. [UID for Tor Process](#uid-for-tor-process)
+5. [UID for Tor Process](#uid-for-tor-process)
  
-7. [Firewall Explained](#firewall-explained)
+6. [Firewall Explained](#firewall-explained)
 
 
 
@@ -35,7 +32,7 @@ This guide assumes you have followed `configure_tor.md`, and confirmed TOR conne
 This guide assumes you have followed `MullVad_DNS.md`, and confirmed DNS works
 
 
-# Modifying TOR confiration file
+# Modifying TOR configuration file
 We will be added a few rules that are needed for us to be able to route all traffic over 
 TOR. These are very usefull especially when configuring with nftables firewall.
 
