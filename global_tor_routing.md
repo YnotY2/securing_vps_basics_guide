@@ -121,6 +121,7 @@ table ip filter {
         }
 
         chain FORWARD {
+                # Traffic is dropped by default, because we have no need for the firewall to act as a router or gateway.
                 type filter hook forward priority 0; policy drop;
         }
 
