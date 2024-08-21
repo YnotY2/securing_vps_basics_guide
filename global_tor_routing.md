@@ -166,7 +166,7 @@ table ip filter {
                 # Allow traffic to private IP addresses (internal communication)
                 ip daddr @private accept
         }
-
+}
 ```
 
 
