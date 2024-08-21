@@ -203,10 +203,18 @@ eth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
 (we can actually set the ip addres, pretty cool)
 
 
+
 **Using `ip` command:**
 
-If you’re creating a virtual interface (e.g., `eth1`), you can use the `ip` command to configure it
+If you’re creating a virtual interface (e.g., `eth1`), you can use the `ip` command to configure it. First step is to find you're parent interface for public I.P . Usually you can see it visually by just running 'ifconfig' . But we can confirm which one it is by curling dnsleaktest.com And matching to corresponding it to interface I.P listed in output ifconfig.
 
+
+- Create interface 
+```bash
+sudo ip link add link <parent_interface_name> name eth1 type macvlan mode bridge
+```
+
+e.g;
 ```bash
 sudo ip link add link eth0 name eth1 type macvlan mode bridge
 ```
