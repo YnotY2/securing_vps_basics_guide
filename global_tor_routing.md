@@ -1,11 +1,6 @@
 # TOR Configuration
-This is a quick guide to setting up TOR on a VPS, no complex routing rules with nftables. Just simply setting up basic tor usage, routing utilising torify. Monitoring TOR interface, traffic and settings using 'nyx' aswell.
-Traffic is from locahost is routed trough a socks5 proxy. 
-
-TOR routes traffic from localhost to maintain privacy, control, and flexibility. This setup ensures that traffic is anonymized before it reaches the internet, prevents exposure of the public IP address, and allows for selective routing of traffic through TOR. It is a well-established practice in TOR’s design and usage to balance security and practicality.
-
-- *If you want to route all outbound traffic over tor checkout 'global_tor_routing.md'*
-
+This is a quick guide for forcing all outbound traffic from VPS over the tonetwork, aka nodes. Traffic will not be allowed to establish connection or send outbound requests wihout going trough tor-network. We enforece this using nftables firewall ruleset. Proiveed by offcial tor documentatoin.
+- *Tor Documentation*: https://gitlab.torproject.org/legacy/trac/-/wikis/doc/TransparentProxy#local-redirection-through-tor 
 
 
 ## Table of Contents
@@ -302,8 +297,56 @@ define interface = eth0
 define uid = 105
 
 ```
+# UID for Tor Process
 
-# uid user tor-process
+For the firewall to route traffic accordingly, we use the identifier, also known as the UID (User ID), of the user running the current Tor process.
+
+**Purpose:**
+
+- **Firewall Rules and Traffic Filtering:** Allows specific firewall rules to be applied only to traffic originating from the Tor process, based on its UID.
+- **Privilege Separation:** Ensures the Tor process operates with the least necessary privileges, enhancing security by limiting the potential damage if compromised.
+- **Isolation from Other Processes:** Helps isolate the Tor process from other system processes, preventing unauthorized access and potential security issues.
+- **Accountability and Logging:** Facilitates monitoring and logging of activities specific to the Tor process.
+
+**How to Find the UID:**
+
+You can find the UID by running the `htop` command and looking for the user associated with the `tor` process:
+- looking for the following path:
+`/usr/bin/to`" within htop.
+
+```
+htop
+```
+
+
+#### Traffic Based on UID in `INPUT` Chain
+- **Allowed** under the `INPUT` chain if it complies with the specified rules related to UID.
+
+  **Rules:**
+  - **`INPUT` Chain:**
+    - **Local Connections:** Traffic originating from processes owned by the user with the specified UID is evaluated according to the `INPUT` chain rules. For example, if the Tor process runs with UID `105` (`debian-tor`), any incoming traffic from this UID will be managed according to the rules.
+    - **Local SSH Connections:** Connections initiated on the specified network interface `$interface` that are new TCP connections on port `22` (SSH) are allowed. This is useful for managing SSH access while ensuring that only established connections or those meeting the criteria are accepted.
+    - **Established Connections:** Any traffic that is part of an established connection is allowed, regardless of the UID.
+    - **Loopback Interface:** Traffic on the loopback interface (`lo`) is accepted.
+    - **Private IP Range:** Traffic originating from IP addresses within the `private` IP range (e.g., `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`, `127.0.0.0/8`) is accepted.
+
+  **Non-compliance:**
+  - Traffic from processes not owned by the specified UID or those not meeting the established connection state, SSH, or `private` range criteria may be dropped.
+
+#### Traffic Based on UID in `OUTPUT` Chain
+- **Allowed** under the `OUTPUT` chain if it complies with the specified rules related to UID.
+
+  **Rules:**
+  - **`OUTPUT` Chain:**
+    - **New Connections:** Outgoing TCP traffic from processes owned by the user with the specified UID is allowed if it matches the rules for new connections. For instance, traffic from UID `105` is permitted if it is a new TCP connection and follows the specified rules.
+    - **Loopback Interface:** Traffic to the loopback interface (`lo`) is accepted.
+    - **Private IP Range:** Traffic destined for IP addresses within the `private` IP range is allowed.
+    - **NAT Redirections:** 
+      - **TCP Traffic:** Traffic destined for IP ranges within `10.192.0.0/10` is redirected to port `9040`. While `192.168.1.10` is not within this range, TCP traffic from `192.168.1.10` will be redirected to port `9040` due to the general redirection rule.
+      - **UDP Traffic:** Traffic destined for `127.0.0.1` on UDP port `53` is redirected to port `5353`. Since `192.168.1.10` does not match this rule, it is not affected by this specific redirection.
+
+  **Non-compliance:**
+  - Traffic from processes not owned by the specified UID, or traffic not matching the specified rules, may be dropped. For example, traffic that does not conform to the allowed states or specified UID rules will be rejected based on the chain policies.
 
 
 
