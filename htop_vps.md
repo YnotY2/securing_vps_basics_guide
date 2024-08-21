@@ -4,7 +4,7 @@
 ```
 apt-get install htop
 ```
-![htop_overview](./images/htop_overview.png
+![htop_overview](./images/htop_overview.png)
 
 
 
