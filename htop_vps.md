@@ -4,6 +4,9 @@
 ```
 apt-get install htop
 ```
+![htop_overview](./images/htop_overview.png
+
+
 
 ## Overview
 `htop` is an interactive process viewer for Unix systems. It provides a dynamic, real-time view of the system's processes and resource usage. This document outlines the configuration settings used in a specific `htop` setup.
