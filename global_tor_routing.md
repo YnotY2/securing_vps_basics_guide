@@ -77,11 +77,11 @@ Nftables is a very powerfull modern firewall, via cli. In this specific use-case
 
 
 ## Coniguration File 'global_tor_routing.nft'
-```
+```nftables
 # Verify your network interface with ip addr, verify interface by curling public I.P
-define interface = <parent_interface>
+define interface = eth0
 # Verify tor uid with id -u tor, in debain find it using htop, for me it's: debian-tor. (will be user running tor prcess)
-define uid = <uid_of_tor_user>
+define uid = 105
 
 # Private Internal I.P Utilised: 192.168.1.10
 
@@ -129,7 +129,7 @@ table ip filter {
                 ct state established accept
                 iifname "lo" accept
                 # Accept private range of IP addresses
-                ip saddr private accept
+                ip saddr @private accept
         }
 
         chain FORWARD {
@@ -147,11 +147,11 @@ table ip filter {
 
                 # Allow traffic to the loopback interface ("lo"), Handles DNS queries through TOR
                 oifname "lo" accept
-            
+
                 # Allow traffic to private IP addresses (internal communication)
-                ip daddr private accept
+                ip daddr @private accept
         }
-}
+
 ```
 
 
