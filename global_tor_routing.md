@@ -3,9 +3,11 @@ This is a quick guide for forcing all outbound traffic from VPS over the tonetwo
 - *Tor Documentation*: https://gitlab.torproject.org/legacy/trac/-/wikis/doc/TransparentProxy#local-redirection-through-tor 
 - *Nftables Documentation:* https://wiki.nftables.org/wiki-nftables/index.php/Main_Page
 
+![tor_routing_globa](./images/tor_routing_global.png)
+
+
+
 ## Table of Contents
-
-
 
 0. [Assumptions Set-Up](#assumptions-set-up)
 
