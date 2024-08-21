@@ -9,7 +9,7 @@ This is a quick guide for forcing all outbound traffic from VPS over the tonetwo
 
 ## Table of Contents
 
-[Features Firewall](#features-firewall)
+- [Features Firewall](#features-firewall)
 0. [Assumptions Set-Up](#assumptions-set-up)
 1. [Modifying TOR Configuration File](#modifying-tor-configuration-file)
 2. [nftables](#nftables)
