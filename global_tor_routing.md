@@ -63,7 +63,7 @@ HashedControlPassword 16:16:01212Ff122122121DF3141E15EXAMPLHASHJ
 - **HashedControlPassword 16:01212Ff122122121DF3141E15EXAMPLHASH**
   - *This hashed password is used to authenticate clients attempting to connect to the Tor control port. The password is hashed for security, ensuring that the actual password isn't exposed in the configuration file.*
 
-  You can just copy the above listed torrc file, the only thing needed to be modified is you're own Controll Port Password. (which you should already have set-up)
+## **You can just copy the above listed torrc file, the only thing needed to be modified is you're own Controll Port Password. (which you should already have set-up)**
 
  **Restart TOR**
 
