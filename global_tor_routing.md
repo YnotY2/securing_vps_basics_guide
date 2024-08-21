@@ -83,10 +83,10 @@ Nftables is a very powerfull modern firewall, via cli. In this specific use-case
 
 ## Coniguration File 'global_tor_routing.nft'
 ```
-# Verify your network interface with ip addr
-define interface = eth0
-# Verify tor uid with id -u tor, in debain find it using htop, for me it's: debian-tor
-define uid = 105
+# Verify your network interface with ip addr, verify interface by curling public I.P
+define interface = <parent_interface>
+# Verify tor uid with id -u tor, in debain find it using htop, for me it's: debian-tor. (will be user running tor prcess)
+define uid = <uid_of_tor_user>
 
 
 table ip nat {
@@ -205,7 +205,7 @@ eth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
 
 **Using `ip` command:**
 
-If you’re creating a virtual interface (e.g., `eth1`), you can use the `ip` command to configure it.
+If you’re creating a virtual interface (e.g., `eth1`), you can use the `ip` command to configure it
 
 ```bash
 sudo ip link add link eth0 name eth1 type macvlan mode bridge
@@ -279,7 +279,18 @@ Your `nftables` firewall configuration handles traffic as follows for the IP add
 - **NAT:** Traffic to/from `192.168.1.10` will follow the general NAT redirection rules, including the default TCP redirection to port `9040`.
 
 
+# Interface Name
+The interface we have created, and called `eth1`, is the internal I.P of parent `eth0` . For you're case of creating internal-ip it might have been a different parant interface. The parent interface name should be set as a variable within the `.nft` file :
 
+```
+define interface = <parent_interface>
+define uid = <uid_of_tor_user>
+define interface = <eth0>
+
+
+
+
+```
 
 
 
