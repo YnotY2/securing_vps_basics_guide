@@ -21,7 +21,7 @@ This is a quick guide for forcing all outbound traffic from VPS over the tonetwo
  6. [Firewall Explained](#firewall-explained)
 
 
-
+🌱
 ## Features Firewall: 
 -   Forces all outbound traffic through TOR network ✅
 -   Allow traffic to the loopback interface ("lo"), Handles DNS queries through TOR ✅
@@ -61,7 +61,7 @@ This guide assumes you have followed `MullVad_DNS.md`, and confirmed DNS works
 We will be added a few rules that are needed for us to be able to route all traffic over 
 TOR. These are very usefull especially when configuring with nftables firewall.
 
-# `/etc/tor/torrc file`
+# `/etc/tor/torrc file` 🌱
 ```
 SocksPort 9050
 29 VirtualAddrNetworkIPv4 10.192.0.0/10
@@ -113,8 +113,8 @@ HashedControlPassword 16:16:01212Ff122122121DF3141E15EXAMPLHASHJ
 # Nftables
 Nftables is a very powerfull modern firewall, via cli. In this specific use-case we are going to configure the managing of traffic flow in a system that uses the Tor network for anonymity, forcing all outbound traffic trough TOR network aka nodes. We enforce strict controls on which traffic is allowed in and out of the system. The firewall setup involves two tables: nat for network address translation and filter for packet filtering.
 
-## Coniguration File 'global_tor_routing.nft'
-```nft 🌱
+## Coniguration File 'global_tor_routing.nft' 🌱
+```nft 
 # Verify your network interface with ip addr, verify interface by curling public I.P
 define interface = eth0
 # Verify tor uid with id -u tor, in debain find it using htop, for me it's: debian-tor. (will be user running tor prcess)
@@ -196,10 +196,10 @@ table ip filter {
 Within the firewall configurations there are a few unique requirements necessary for the firewall to work outside of
 just having TOR running with all the listening PORT working.
 
-## Interfaces Needed
+## Interfaces Needed 🌱
 After having successfully set-up a internal i.p address you should have atleast 3 iterfaces up
 
-``` 🌱
+``` 
 eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
         inet 92.113.25.94  netmask 255.255.255.0  broadcast 92.113.25.255
         inet6 fe80::be24:11ff:fe5f:94cf  prefixlen 64  scopeid 0x20<link>
