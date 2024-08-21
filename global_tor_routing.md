@@ -108,7 +108,7 @@ table ip nat {
                 # We return beneath traffic to be processed by the next chain
                 skuid $uid return
                 oifname "lo" return
-                ip daddr unrouteables return
+                ip daddr @unrouteables return
 
                 # We redirect all our TCP traffic to port 9040
                 meta l4proto tcp redirect to :9040
