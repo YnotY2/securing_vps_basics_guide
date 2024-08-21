@@ -285,10 +285,13 @@ The interface we have created, and called `eth1`, is the internal I.P of parent 
 ```
 define interface = <parent_interface>
 define uid = <uid_of_tor_user>
-define interface = <eth0>
+```
 
+e.g;
 
-
+```
+define interface = eth0
+define uid = 105
 
 ```
 
