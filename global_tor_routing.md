@@ -377,6 +377,14 @@ You can find the UID by running the `htop` command and looking for the user asso
 ```
 htop
 ```
+```
+🌱 19224    debian-tor 20 N/A  00:00:10   /usr/bin/tor --defaults-torrc /etc/tor/torrc
+```
+
+Then you will need to fetch the ID from the user you found:
+```
+
+```
 
 
 #### Traffic Based on UID in `INPUT` Chain
