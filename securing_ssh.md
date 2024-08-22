@@ -113,7 +113,25 @@ PasswordAuthentication no
    - **Explanation:** Enables PAM (Pluggable Authentication Modules) for authentication, account processing, and session management. This is necessary if your system relies on PAM for managing authentication or session features.
 
 
-# Confirm ssh login to VPS
+## Adding ssh private-key to ssh-keyring
+To actually utilise the ssh keypair you have created, you will need to add the private side of the keypair to you're ssh-keyring. You see a key-pair is kinda like a physical lock. The public key-pair in this euthemism is the lock
+the lock needs to be placed somewhere for the key to find. In this case the lock is the public-key from our pair located on the VPS. The private-key from the pair we just generated can now access the VPS with it's key. It works 
+like a handshake :D 
+
+-You need to run the following cli cmd to add private-key to ssh-keyring
+```
+sudo -E ssh-add /path/to/key_created/private_key
+```
+
+e.g;
+
+
+```
+🔗 sudo -E ssh-add /home/mykeys/ssh/vps/main_vps_key
+```
+
+
+## Confirm ssh login to VPS
 
 **Confirm** *SSH Key-Based Login* works as expected
 - From you're localhost outside of VPS confirm login.
@@ -125,7 +143,6 @@ e.g;
 
 ```
 🔗 ssh -i /home/mykeys/ssh/vps/main_vps_key yourusername@your_vps_ip
-
 ```
 
 7. 
