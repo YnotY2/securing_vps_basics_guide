@@ -16,7 +16,7 @@ e.g;
 ```
 
 
-# Moving public key-pair to VPS
+## Moving public key-pair to VPS
 
 We will store our public-key generated from the pair within a standard directory on the VPS. 
 - Login to you're VPS with the created user on the VPS 
@@ -64,13 +64,40 @@ sudo systemctl status sshd
 ```
 
 
-# Modify the SSHD Config File
+## Modify the SSHD Config File
 The sshd config file authenticates the inbound client side ssh connections. Because we are running ssh on the server side, this congiguration file is used for authentication of a incomming client.
 - **Location:** Typically found in */etc/ssh/sshd_config* for system-wide settings.
+- *We will be modifying the file to optimise security.*
 
-We will be 
+1. **Open** sshd_config file located at *`/etc/ssh/sshd_config`*
+```
+sudo nano /etc/ssh/sshd_config
+```
+
+2. **Add the following lines**
+```
+# Authorized Keys
+AuthorizedKeysFile .ssh/authorized_keys
+
+ClientAliveInterval 120
+PermitRootLogin no
+PasswordAuthentication no
+```
 
 
+### **Lines/Rules Explained:**
+
+1. **`AuthorizedKeysFile .ssh/authorized_keys`**
+   - **Explanation:** This line specifies the file that contains the public keys for SSH authentication. It tells the SSH server where to look for the authorized keys for each user. By default, this is set to `.ssh/authorized_keys`, which is a hidden directory and file in the user’s home directory.
+
+2. **`ClientAliveInterval 120`**
+   - **Explanation:** This setting controls how often (in seconds) the SSH server will send a message to the client to check if it is still alive. If the client does not respond within the specified time, the server may close the connection. In this case, it’s set to 120 seconds, meaning the server will check the client’s status every 2 minutes.
+
+3. **`PermitRootLogin no`**
+   - **Explanation:** This option disables root login over SSH. It is a security measure to prevent direct access to the root account via SSH, which can help protect against unauthorized access and brute-force attacks. Instead, users should log in with a regular account and use `sudo` or `su` to execute commands with elevated privileges.
+
+4. **`PasswordAuthentication no`**
+   - **Explanation:** This setting disables password-based authentication for SSH. By setting this to `no`, SSH will only allow key-based authentication (using SSH keys). This is generally considered more secure than password authentication, as it mitigates the risk of brute-force attacks on passwords.
 
 # Confirm ssh login to VPS
 
