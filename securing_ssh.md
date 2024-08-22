@@ -24,6 +24,8 @@ This guide will assume you have already disabled root login for the VPS. It will
 
       ```
 
+      ![vpn_ssh_diagram](./images/vpn_ssh_diagram.jpg)
+
    - [Securing SSH Access](#securing-ssh-access)
    - [Features SSH](#features-ssh)
    - [Creating SSH Key-Pair](#creating-ssh-key-pair)
