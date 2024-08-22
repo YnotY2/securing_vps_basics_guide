@@ -4,6 +4,27 @@ This guide will assume you have already disabled root login for the VPS. It will
 - *adding_user_vps.md*
 - *Use the created user on you're VPS not the root user*
 
+## Features SSH
+-   Disable root login ✅
+-   Disable password based auth ✅
+-   Enabled ssh-key pair auth only ✅
+-   Contact client to check if it is still alive every 120s ✅
+-   Disable any outbound ssh conntions from server, it does not act as a client ✅
+-   Display of the message of the day (MOTD) upon login ✅
+    - ```
+      Linux srv579320 6.1.0-23-cloud-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.1.99-1 (2024-07-15) x86_64
+      
+      The programs included with the Debian GNU/Linux system are free software;
+      the exact distribution terms for each program are described in the
+      individual files in /usr/share/doc/*/copyright.
+      
+      Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+      permitted by applicable law.
+      Last login: Thu Aug 22 16:22:55 2024 from 193.32.249.138
+
+      ```
+
+
 # Creating SSH key-pair
 
 We will create the private and public key-pair within our custom directory path.
