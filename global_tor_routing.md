@@ -3,25 +3,7 @@ This is a quick guide for forcing all outbound traffic from VPS over the tonetwo
 - *Tor Documentation*: https://gitlab.torproject.org/legacy/trac/-/wikis/doc/TransparentProxy#local-redirection-through-tor 
 - *Nftables Documentation:* https://wiki.nftables.org/wiki-nftables/index.php/Main_Page
 
-![tor_routing_globa](./images/tor_routing_global.png)
-![routing_diagram](./images/tor_nftables_diagram.png)
 
-
-## Table of Contents
-
-- [Features Firewall](#features-firewall)
-0. [Assumptions Set-Up](#assumptions-set-up)
-1. [Modifying TOR Configuration File](#modifying-tor-configuration-file)
-2. [nftables](#nftables)
-    - [Configuration File](#configuration-file-global_tor_routing.nft)
-    - [Setting Up Unique Values](#setting-up-unique-values)
-3. [Internal I.P on fresh interface](#internal-ip-on-fresh-interface)
-4. [Interface Name](#interface-name)
-5. [UID for Tor Process](#uid-for-tor-process)
- 6. [Firewall Explained](#firewall-explained)
-
-
-🌱
 ## Features Firewall
 -   Forces all outbound traffic through TOR network ✅
 -   Allow traffic to the loopback interface ("lo"), Handles DNS queries through TOR ✅
@@ -51,7 +33,24 @@ This is a quick guide for forcing all outbound traffic from VPS over the tonetwo
       }
       ``
 
-    
+
+## Table of Contents
+
+- [Features Firewall](#features-firewall)
+0. [Assumptions Set-Up](#assumptions-set-up)
+1. [Modifying TOR Configuration File](#modifying-tor-configuration-file)
+2. [nftables](#nftables)
+    - [Configuration File](#configuration-file-global_tor_routing.nft)
+    - [Setting Up Unique Values](#setting-up-unique-values)
+3. [Internal I.P on fresh interface](#internal-ip-on-fresh-interface)
+4. [Interface Name](#interface-name)
+5. [UID for Tor Process](#uid-for-tor-process)
+ 6. [Firewall Explained](#firewall-explained)
+
+
+
+![tor_routing_globa](./images/tor_routing_global.png)
+
 # Assumptions Set-Up
 This guide assumes you have followed `configure_tor.md`, and confirmed TOR connection works.
 This guide assumes you have followed `MullVad_DNS.md`, and confirmed DNS works
@@ -112,6 +111,9 @@ HashedControlPassword 16:16:01212Ff122122121DF3141E15EXAMPLHASHJ
 
 # Nftables
 Nftables is a very powerfull modern firewall, via cli. In this specific use-case we are going to configure the managing of traffic flow in a system that uses the Tor network for anonymity, forcing all outbound traffic trough TOR network aka nodes. We enforce strict controls on which traffic is allowed in and out of the system. The firewall setup involves two tables: nat for network address translation and filter for packet filtering.
+
+![routing_diagram](./images/tor_nftables_diagram.png)
+
 
 ## Coniguration File 'global_tor_routing.nft' 🌱
 ```nft 
