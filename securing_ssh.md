@@ -19,6 +19,7 @@ e.g;
 # Moving public key-pair to VPS
 
 We will store our public-key generated from the pair within a standard directory on the VPS. 
+- Login to you're VPS with the created user on the VPS 
 
 1. **Copy** the *public_key*
 - The Public-Key will end within `.pub` 
@@ -41,4 +42,21 @@ chmod 700 ~/.ssh
 sudo nano ~/.ssh/authorized_keys
 ```
 
-5. 
+5. **Grant correct permissions** to the *~/.ssh/authorized_keys* directory
+```
+chmod 600 ~/.ssh/authorized_keys
+```
+
+6. **Confirm** *SSH Key-Based Login* works as expected
+```
+ssh -i /path/to/your/private_key yourusername@your_vps_ip
+```
+
+e.g;
+
+```
+🔗 ssh -i /home/mykeys/ssh/vps/main_vps_key yourusername@your_vps_ip
+
+```
+
+7. 
