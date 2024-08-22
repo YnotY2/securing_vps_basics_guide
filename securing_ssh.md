@@ -76,6 +76,10 @@ sudo nano /etc/ssh/sshd_config
 
 2. **Add the following lines**
 ```
+UsePAM yes
+PrintMotd yes
+KbdInteractiveAuthentication no
+
 # Authorized Keys
 AuthorizedKeysFile .ssh/authorized_keys
 
@@ -98,6 +102,16 @@ PasswordAuthentication no
 
 4. **`PasswordAuthentication no`**
    - **Explanation:** This setting disables password-based authentication for SSH. By setting this to `no`, SSH will only allow key-based authentication (using SSH keys). This is generally considered more secure than password authentication, as it mitigates the risk of brute-force attacks on passwords.
+
+5. **`PrintMotd yes`**
+   - **Explanation:** Display of the message of the day (MOTD) upon login. This is useful for reducing unnecessary output and focusing on essential information.
+
+6. **`KbdInteractiveAuthentication no`**
+   - **Explanation:** Disables keyboard-interactive authentication, which is often used for challenge-response passwords. This ensures that only key-based authentication is used.
+
+7. **`UsePAM yes`**
+   - **Explanation:** Enables PAM (Pluggable Authentication Modules) for authentication, account processing, and session management. This is necessary if your system relies on PAM for managing authentication or session features.
+
 
 # Confirm ssh login to VPS
 
