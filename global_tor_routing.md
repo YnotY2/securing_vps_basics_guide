@@ -4,7 +4,7 @@ This is a quick guide for forcing all outbound traffic from VPS over the tonetwo
 - *Nftables Documentation:* https://wiki.nftables.org/wiki-nftables/index.php/Main_Page
 
 ![tor_routing_globa](./images/tor_routing_global.png)
-
+![routing_diagram](./images/tor_routing_global.png)
 
 
 ## Table of Contents
