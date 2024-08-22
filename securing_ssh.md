@@ -24,6 +24,15 @@ This guide will assume you have already disabled root login for the VPS. It will
 
       ```
 
+   - [Securing SSH Access](#securing-ssh-access)
+   - [Adding User to VPS](#adding-user-to-vps)
+   - [Features SSH](#features-ssh)
+   - [Creating SSH Key-Pair](#creating-ssh-key-pair)
+   - [Moving Public Key-Pair to VPS](#moving-public-key-pair-to-vps)
+   - [Modify the SSHD Config File](#modify-the-sshd-config-file)
+   - [Adding SSH Private-Key to SSH-Keyring](#adding-ssh-private-key-to-ssh-keyring)
+   - [Confirm SSH Login to VPS](#confirm-ssh-login-to-vps)
+
 
 # Creating SSH key-pair
 
