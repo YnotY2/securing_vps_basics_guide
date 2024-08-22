@@ -1,6 +1,7 @@
 # Securing SSH access 
 This guide will assume you have already disabled root login for the VPS. It will focus on setting up a key-pair and aslo a extra protective seedphrase when loggin in to VPS.
 - This guide assumes you have already created a fresh user on the VPS, and added it to the su group.
+- **
 - *Use the created user on you're VPS not the root user*
 
 # Creating SSH key-pair
@@ -114,17 +115,18 @@ PasswordAuthentication no
 
 
 ## Adding ssh private-key to ssh-keyring
-To actually utilise the ssh keypair you have created, you will need to add the private side of the keypair to you're ssh-keyring. You see a key-pair is kinda like a physical lock. The public key-pair in this euthemism is the lock
-the lock needs to be placed somewhere for the key to find. In this case the lock is the public-key from our pair located on the VPS. The private-key from the pair we just generated can now access the VPS with it's key. It works 
-like a handshake :D 
+To use the SSH key pair you’ve created, you need to add the private key to your SSH keyring. Think of a key pair like a physical lock and key. In this analogy:
 
+ - **The public key** is like the *lock.* It is placed on the server (VPS) where you want to gain access.
+ - **The private key** is like the *key* that opens the lock. You keep this private key on your local machine.
+
+When you connect to the server, the SSH client uses the private key to “unlock” the public key on the server, completing a secure handshake.
 -You need to run the following cli cmd to add private-key to ssh-keyring
 ```
 sudo -E ssh-add /path/to/key_created/private_key
 ```
 
 e.g;
-
 
 ```
 🔗 sudo -E ssh-add /home/mykeys/ssh/vps/main_vps_key
