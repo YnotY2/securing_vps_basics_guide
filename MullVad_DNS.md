@@ -98,6 +98,22 @@ search .
 
 Local DNS queries are directed through `systemd-resolved`, which forwards them to the configured DNS servers. The `nameserver 127.0.0.53` entry in `/etc/resolv.conf` points to the local `systemd-resolved` stub resolver, which handles DNS requests and applies the configured settings.
 
+## Applying Changes to DNS resolver
+
+To apply changes made to the `/etc/resolv.conf` file on Debian-based systems, follow these steps:
+
+1. **Edit the File**: Make sure you edit `/etc/resolv.conf` with the desired DNS settings.
+
+2. **Save Changes**: Save the file ensuring there are no syntax errors.
+
+3. **Restart Networking Service**:
+   On Debian-based systems, you typically need to restart the networking service to apply the changes:
+   - ```
+     sudo systemctl restart systemd-resolved
+     ```
+
+
+
 ## Verify Custom DNS Settings
 
 To verify that your custom DNS settings are working correctly, you can use several commands to check the current DNS configuration and ensure that it is using the MullVad DNS servers as configured. Follow these steps:
