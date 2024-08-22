@@ -176,6 +176,9 @@ To verify that your custom DNS settings are working correctly, you can use sever
 
    Use the `dig` command to confirm that DNS queries are being resolved correctly through the configured DNS server:
    - You should see the 'localhost' server, as this is where we foward requests.
+   - ```
+     dig dnsleaktest.com
+     ```
 
    ```
    symbol@srv579320:~$ dig example.com
