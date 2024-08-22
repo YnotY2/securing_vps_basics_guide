@@ -6,8 +6,10 @@ no log policy on there DNS servers.
 ## Features DNS Content Blockers
 ```
 Hostname 	            Ads 	Trackers 	Malware 	Adult 	Gambling 	Social media
-all.dns.mullvad.net 	✅ ✅ ✅ ✅ ✅ ✅
+all.dns.mullvad.net 	✅     ✅       ✅         ✅       ✅        ✅
 ```
+
+![mullvad_dns_diagram](./images/mullvad_dns_diagram(1).png)
 
 ## Table of Contents
 
