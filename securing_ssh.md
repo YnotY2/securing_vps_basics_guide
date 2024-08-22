@@ -47,7 +47,25 @@ sudo nano ~/.ssh/authorized_keys
 chmod 600 ~/.ssh/authorized_keys
 ```
 
+6. **Restart** *ssh and sshd* systemctl service, to **apply changes**
+```
+sudo systemctl restart sshd
+```
+```
+sudo systemctl restart sshd
+```
+
+7. **Check** the *status*  of both services, to *confirm correct restart*
+```
+sudo systemctl status sshd
+```
+```
+sudo systemctl status sshd
+```
+
+
 6. **Confirm** *SSH Key-Based Login* works as expected
+- From you're localhost outside of VPS confirm login.
 ```
 ssh -i /path/to/your/private_key yourusername@your_vps_ip
 ```
