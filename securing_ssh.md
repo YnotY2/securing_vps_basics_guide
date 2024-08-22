@@ -35,3 +35,10 @@ mkdir -p ~/.ssh
 ```
 chmod 700 ~/.ssh
 ```
+
+4. **Create and Add** *public-ssh-key* (.pub) to file 'authorized_keys' for storing the ssh public key (from the pair created earlier) within VPS
+```
+sudo nano ~/.ssh/authorized_keys
+```
+
+5. 
