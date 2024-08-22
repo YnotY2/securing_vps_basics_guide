@@ -119,6 +119,9 @@ To apply changes made to the `/etc/resolv.conf` file on Debian-based systems, fo
 To verify that your custom DNS settings are working correctly, you can use several commands to check the current DNS configuration and ensure that it is using the MullVad DNS servers as configured. Follow these steps:
 
 1. **Check DNS Configuration with `resolvectl status`**
+ - ```
+   resolvectl status
+   ````
 
    Run the following command to view the current DNS configuration and server details:
 
