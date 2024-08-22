@@ -64,7 +64,17 @@ sudo systemctl status sshd
 ```
 
 
-6. **Confirm** *SSH Key-Based Login* works as expected
+# Modify the SSHD Config File
+The sshd config file authenticates the inbound client side ssh connections. Because we are running ssh on the server side, this congiguration file is used for authentication of a incomming client.
+- **Location:** Typically found in */etc/ssh/sshd_config* for system-wide settings.
+
+We will be 
+
+
+
+# Confirm ssh login to VPS
+
+**Confirm** *SSH Key-Based Login* works as expected
 - From you're localhost outside of VPS confirm login.
 ```
 ssh -i /path/to/your/private_key yourusername@your_vps_ip
