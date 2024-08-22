@@ -23,4 +23,28 @@ MullVad DNS is a strusted server, I believe in the security and annonimity of th
 
 -`MullVad_DNS.md`
 
-## 
+## Configurig htop
+htop is a very valueble program for monitoring running processes within the system of you're VPS
+
+-`htop_vps.md`
+
+## Securing SSH brute-force attacks
+This tool allows for monitoring incomming ssh connections, and will time-out a I.P after certain specified times from attemptign VPS login
+
+-`fail2ban.md`
+
+## Configure TOR 
+This tool is very usefull for remaining secure and annonymous on the internet 
+
+-`configure_tor.md`
+
+## Configure Nftables Firewall
+This firewall for allow access to server for modifying system, while all traffic is forced through tor exit node. HTTPS and HTTP traffic is allowed over the firewall currently. 
+
+-`global_tor_routing.md`
+
+## Running Python Code
+This guide shows how to run python3 code from a VPS
+
+-`running_python_code.md`
+
